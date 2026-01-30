@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Study Reminder App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            width: 360px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="time"] {
+            padding: 8px;
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        button {
+            padding: 10px 22px;
+            font-size: 16px;
+            background-color: #43cea2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #36b08a;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 15px;
+            color: green;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 Study Reminder</h1>
+    <p>Set your daily study time and stay consistent.</p>
+
+    <input type="time" id="studyTime">
+    <br><br>
+    <button onclick="setReminder()">Set Reminder</button>
+
+    <div id="status"></div>
+
+    <footer>Experiment 14 – DevOps Lab</footer>
+</div>
+
+<script>
+    let reminderTime = null;
+
+    function setReminder() {
+        reminderTime = document.getElementById("studyTime").value;
+        if (reminderTime === "") {
+            alert("Please select a time!");
+            return;
+        }
+        document.getElementById("status").innerText =
+            "Reminder set for " + reminderTime;
+    }
+
+    setInterval(() => {
+        if (!reminderTime) return;
+
+        const now = new Date();
+        const currentTime =
+            now.getHours().toString().padStart(2, "0") + ":" +
+            now.getMinutes().toString().padStart(2, "0");
+
+        if (currentTime === reminderTime) {
+            alert("📚 Time to study! Stay focused and achieve your goals.");
+            reminderTime = null;
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
